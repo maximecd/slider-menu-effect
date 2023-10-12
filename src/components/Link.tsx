@@ -1,31 +1,54 @@
 import { ReactNode } from 'react'
-import { css } from '../../styled-system/css'
+import { css, cva } from '../../styled-system/css'
 
 interface LinkProps {
   shape: 'square' | 'circle' | 'squircle'
+  index: number
+  activeIndex: number | null
+  onMouseEnter: () => void
   children: ReactNode
 }
 
-function Link({ shape, children }: LinkProps) {
+const shapeClass = cva({
+  base: {
+    w: 5,
+    h: 5,
+    border: '1px solid black',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  variants: {
+    shape: {
+      circle: {
+        borderRadius: 'full',
+      },
+      squircle: {
+        borderRadius: 'sm',
+      },
+      square: {},
+    },
+  },
+})
+
+function Link({ shape, onMouseEnter, index, activeIndex, children }: LinkProps) {
   return (
     <li>
       <a
         href='#'
         className={css({
+          py: 1,
           display: 'flex',
           alignItems: 'center',
           gap: 3,
+          opacity: activeIndex === null || activeIndex === index ? '1' : '.5',
+          transition: 'all',
         })}
+        onMouseEnter={onMouseEnter}
       >
         <div
-          className={css({
-            w: 6,
-            h: 6,
-            border: '1px solid black',
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: shape === 'circle' ? 'full' : '4px',
+          className={shapeClass({
+            shape: shape,
           })}
         >
           <span

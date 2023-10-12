@@ -2,10 +2,10 @@ import { ElementRef, useRef, useState } from 'react'
 import { css } from '../../styled-system/css'
 import gsap from 'gsap'
 import { token } from '../../styled-system/tokens'
-import Link from './Link'
+import Menu from './Menu'
 
 function Nav() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
 
   const headerRef = useRef<ElementRef<'header'>>(null)
 
@@ -16,21 +16,29 @@ function Nav() {
     gsap.context(() => {
       const tl = gsap.timeline({
         defaults: {
-          ease: 'power4.out',
+          ease: 'power3.out',
           duration: 1,
         },
       })
       tl.to(headerRef.current, {
         height: 'auto',
-      }).from(
-        '#dropdown li',
-        {
-          opacity: 0,
-          y: 40,
-          stagger: 0.05,
-        },
-        '<0.2'
-      )
+      })
+        .from(
+          '#dropdown li, #dropdown .button-link',
+          {
+            opacity: 0,
+            y: 40,
+            stagger: 0.05,
+          },
+          '<0.2'
+        )
+        .from(
+          '[data-carousel]',
+          {
+            opacity: 0,
+          },
+          '<'
+        )
     }, headerRef)
   }
 
@@ -40,8 +48,8 @@ function Nav() {
       const tl = gsap.timeline({
         onComplete: () => setIsDropdownOpen(false),
         defaults: {
-          ease: 'power4.out',
-          duration: 1,
+          ease: 'power3.out',
+          duration: 0.6,
         },
       })
       tl.to(headerRef.current, {
@@ -76,13 +84,21 @@ function Nav() {
         <nav
           className={css({
             display: 'grid',
-            gridTemplateColumns: '12rem 1fr',
+            gridTemplateColumns: '12',
+            gap: 12,
             alignItems: 'center',
             px: 5,
             h: '14',
           })}
         >
-          <div>Logo goes here</div>
+          <div
+            className={css({
+              gridColumn: '1/span 2',
+              fontWeight: 'bold',
+            })}
+          >
+            SLIDER EFFECT
+          </div>
           <ul className={css({})}>
             <li
               className={css({
@@ -94,49 +110,8 @@ function Nav() {
             </li>
           </ul>
         </nav>
-        <div
-          id='dropdown'
-          className={css({
-            display: 'grid',
-            px: 5,
-            gridTemplateColumns: '12rem 1fr',
-          })}
-        >
-          <ul
-            className={css({
-              visibility: isDropdownOpen ? 'visible' : 'hidden',
-              fontSize: '2xl',
-              gridColumnStart: '2',
-              my: '16',
-              display: 'flex',
-              flexDir: 'column',
-              gap: 2,
-            })}
-          >
-            <Link shape='squircle'>Confidence</Link>
-            <Link shape='square'>Fascination</Link>
-            <Link shape='circle'>Hitera</Link>
-            <Link shape='circle'>Iris by MODELEC</Link>
-            <Link shape='squircle'>Karo</Link>
-            <Link shape='square'>Désir</Link>
-            <li>
-              <a
-                href=''
-                className={css({
-                  mt: 8,
-                  display: 'inline-flex',
-                  fontSize: 'sm',
-                  border: '1px solid',
-                  borderColor: 'gray.600',
-                  borderRadius: 'lg',
-                  py: '3',
-                  px: '6',
-                })}
-              >
-                See all collections
-              </a>
-            </li>
-          </ul>
+        <div id='dropdown'>
+          <Menu />
         </div>
       </header>
     </div>
