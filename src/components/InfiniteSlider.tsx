@@ -1,4 +1,4 @@
-import React, { ElementRef, useEffect, useRef } from 'react'
+import { ElementRef, useEffect, useRef } from 'react'
 import { css } from '../../styled-system/css'
 import gsap from 'gsap'
 import { LinkType } from './Menu'
