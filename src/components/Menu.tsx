@@ -138,7 +138,7 @@ function Menu() {
       <InfiniteSlider links={links} />
       <div
         className={css({
-          gridColumn: '8/span 4',
+          gridColumn: '8/span 3',
           position: 'relative',
         })}
       >

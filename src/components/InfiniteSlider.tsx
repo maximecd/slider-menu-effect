@@ -35,7 +35,7 @@ export default function InfiniteSlider({ links }: InfiniteSliderType) {
       id='infinite-slider'
       ref={slider}
       className={css({
-        gridColumn: '8/span 4',
+        gridColumn: '8/span 3',
         position: 'absolute',
         top: '0',
         overflow: 'hidden',
@@ -48,7 +48,7 @@ export default function InfiniteSlider({ links }: InfiniteSliderType) {
           data-carousel
           className={css({
             display: 'grid',
-            width: '60%',
+            width: '75%',
           })}
         >
           {links.map((link, i) => (
