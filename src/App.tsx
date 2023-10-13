@@ -21,6 +21,30 @@ function App() {
       >
         Sample website.
       </h1>
+      <footer
+        className={css({
+          mt: 'auto',
+          fontSize: 'xs',
+          p: '2',
+          bgColor: 'neutral.800',
+          w: 'full',
+          display: 'flex',
+          justifyContent: 'center',
+        })}
+      >
+        <p>
+          initial design by{' '}
+          <a
+            className={css({
+              textDecoration: 'underline',
+              cursor: 'pointer',
+            })}
+            href='https://www.modelec.com/'
+          >
+            https://www.modelec.com/
+          </a>
+        </p>
+      </footer>
     </div>
   )
 }
