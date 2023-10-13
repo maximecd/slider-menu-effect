@@ -107,10 +107,26 @@ function Nav() {
             <li
               className={css({
                 cursor: 'pointer',
+                display: 'flex',
+                width: 'max-content',
+                alignItems: 'center',
+                gap: '2',
               })}
               onMouseEnter={() => openDropdown()}
             >
               Landscapes
+              <svg
+                className={css({
+                  transform: isDropdownOpen ? 'rotate(180deg)' : '',
+                  transition: 'all ease-in-out .2s',
+                })}
+                fill='none'
+                viewBox='0 0 15 15'
+                height='1em'
+                width='1em'
+              >
+                <path fill='currentColor' d='M4 9h7L7.5 4.5 4 9z' />
+              </svg>
             </li>
           </ul>
         </nav>

@@ -130,7 +130,7 @@ function Menu() {
         <a
           href=''
           className={
-            'button-link ' +
+            'button-link group ' +
             css({
               mt: 8,
               display: 'inline-flex',
@@ -140,10 +140,66 @@ function Menu() {
               borderRadius: 'lg',
               py: '3',
               px: '6',
+              alignItems: 'center',
+              gap: '3',
+              position: 'relative',
+              overflow: 'hidden',
             })
           }
         >
-          See all collections
+          <svg
+            className={css({
+              transition: 'all cubic-bezier(.34,1.09,.9,.92) .6s',
+              position: 'absolute',
+              transform: 'translateX(-4em)',
+              opacity: 0,
+              _groupHover: {
+                transform: 'translateX(0em)',
+                opacity: 1,
+              },
+            })}
+            fill='none'
+            viewBox='0 0 15 15'
+            height='1em'
+            width='1em'
+          >
+            <path
+              fill='currentColor'
+              fillRule='evenodd'
+              d='M9.854 3.146L14.207 7.5l-4.353 4.354-.708-.708L12.293 8H1V7h11.293L9.146 3.854l.708-.708z'
+              clipRule='evenodd'
+            />
+          </svg>
+          <span
+            className={css({
+              transition: 'all cubic-bezier(.34,1.09,.9,.92) .6s',
+              _groupHover: {
+                transform: 'translateX(2em)',
+              },
+            })}
+          >
+            See all landscapes
+          </span>
+          <svg
+            className={css({
+              transition: 'all cubic-bezier(.34,1.09,.9,.92) .6s',
+              _groupHover: {
+                transform: 'translateX(4em)',
+                opacity: 0,
+              },
+            })}
+            fill='none'
+            viewBox='0 0 15 15'
+            height='1em'
+            width='1em'
+          >
+            <path
+              fill='currentColor'
+              fillRule='evenodd'
+              d='M9.854 3.146L14.207 7.5l-4.353 4.354-.708-.708L12.293 8H1V7h11.293L9.146 3.854l.708-.708z'
+              clipRule='evenodd'
+            />
+          </svg>
         </a>
       </div>
       <InfiniteSlider links={links} />
