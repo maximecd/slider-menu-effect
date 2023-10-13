@@ -17,6 +17,13 @@ const shapeClass = cva({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
+    transform: 'translateX(0rem)',
+    opacity: 1,
+    transition: 'all',
+    _groupHover: {
+      opacity: 0,
+      transform: 'translateX(1.2rem)',
+    },
   },
   variants: {
     shape: {
@@ -36,30 +43,66 @@ function Link({ shape, onMouseEnter, index, activeIndex, children }: LinkProps) 
     <li>
       <a
         href='#'
-        className={css({
-          py: 1,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 3,
-          opacity: activeIndex === null || activeIndex === index ? '1' : '.5',
-          transition: 'all',
-        })}
+        className={
+          'group ' +
+          css({
+            py: 1,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            opacity: activeIndex === null || activeIndex === index ? '1' : '.5',
+            transition: 'all',
+          })
+        }
         onMouseEnter={onMouseEnter}
       >
         <div
-          className={shapeClass({
-            shape: shape,
+          className={css({
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
           })}
         >
-          <span
+          <svg
             className={css({
-              w: 1,
-              h: 1,
-              bgColor: 'black',
-              rounded: 'full',
+              position: 'absolute',
+              transform: 'translateX(-1.2rem)',
+              opacity: 0,
+              transition: 'all',
+              ml: '0.5',
+              _groupHover: {
+                opacity: 1,
+                transform: 'translateX(0rem)',
+              },
             })}
-          ></span>
+            fill='none'
+            viewBox='0 0 15 15'
+            height='.8em'
+            width='.8em'
+          >
+            <path
+              fill='currentColor'
+              fillRule='evenodd'
+              d='M9.854 3.146L14.207 7.5l-4.353 4.354-.708-.708L12.293 8H1V7h11.293L9.146 3.854l.708-.708z'
+              clipRule='evenodd'
+            />
+          </svg>
+          <div
+            className={shapeClass({
+              shape: shape,
+            })}
+          >
+            <span
+              className={css({
+                w: 1,
+                h: 1,
+                bgColor: 'black',
+                rounded: 'full',
+              })}
+            ></span>
+          </div>
         </div>
+
         {children}
       </a>
     </li>
