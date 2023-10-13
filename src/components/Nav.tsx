@@ -1,4 +1,4 @@
-import { ElementRef, useRef, useState } from 'react'
+import { ElementRef, useEffect, useRef, useState } from 'react'
 import { css } from '../../styled-system/css'
 import gsap from 'gsap'
 import { token } from '../../styled-system/tokens'
@@ -11,35 +11,7 @@ function Nav() {
 
   function openDropdown() {
     if (isDropdownOpen) return
-
     setIsDropdownOpen(true)
-    gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: {
-          ease: 'power3.out',
-          duration: 1,
-        },
-      })
-      tl.to(headerRef.current, {
-        height: 'auto',
-      })
-        .from(
-          '#dropdown li, #dropdown .button-link',
-          {
-            opacity: 0,
-            y: 40,
-            stagger: 0.05,
-          },
-          '<0.2'
-        )
-        .from(
-          '[data-carousel]',
-          {
-            opacity: 0,
-          },
-          '<'
-        )
-    }, headerRef)
   }
 
   function closeDropdown() {
@@ -57,6 +29,38 @@ function Nav() {
       })
     }, headerRef)
   }
+
+  useEffect(() => {
+    if (isDropdownOpen) {
+      gsap.context(() => {
+        const tl = gsap.timeline({
+          defaults: {
+            ease: 'power3.out',
+            duration: 1,
+          },
+        })
+        tl.to(headerRef.current, {
+          height: 'auto',
+        })
+          .from(
+            '#dropdown li, #dropdown .button-link',
+            {
+              opacity: 0,
+              y: 40,
+              stagger: 0.05,
+            },
+            '<0.2'
+          )
+          .from(
+            '[data-carousel]',
+            {
+              opacity: 0,
+            },
+            '<'
+          )
+      }, headerRef)
+    }
+  }, [isDropdownOpen])
 
   return (
     <div
