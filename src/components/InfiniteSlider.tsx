@@ -20,7 +20,7 @@ export default function InfiniteSlider({ links }: InfiniteSliderType) {
         {
           yPercent: -100,
           ease: 'none',
-          duration: 10,
+          duration: 20,
           repeat: -1,
         }
       )
@@ -41,6 +41,10 @@ export default function InfiniteSlider({ links }: InfiniteSliderType) {
         overflow: 'hidden',
         display: 'grid',
         justifyItems: 'center',
+        width: 'full',
+        '2xl': {
+          gridColumn: '8/span 2',
+        },
       })}
     >
       {[...Array(2)].map(() => (
@@ -48,15 +52,19 @@ export default function InfiniteSlider({ links }: InfiniteSliderType) {
           data-carousel
           className={css({
             display: 'grid',
-            width: '75%',
+            width: '100%',
+            justifyItems: 'center',
           })}
         >
           {links.map((link, i) => (
             <img
               key={i}
               className={css({
-                mb: '16',
                 boxShadow: 'xl',
+                aspectRatio: 'square',
+                objectFit: 'cover',
+                borderRadius: '3xl',
+                scale: '.8',
               })}
               src={link.imgSrc}
             />

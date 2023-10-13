@@ -19,7 +19,7 @@ function App() {
           fontWeight: '600',
         })}
       >
-        Hello
+        Sample website.
       </h1>
     </div>
   )

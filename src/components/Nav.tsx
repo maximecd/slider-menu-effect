@@ -106,7 +106,7 @@ function Nav() {
               })}
               onMouseEnter={() => openDropdown()}
             >
-              Collections
+              Landscapes
             </li>
           </ul>
         </nav>

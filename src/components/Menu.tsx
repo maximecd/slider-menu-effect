@@ -12,35 +12,35 @@ export interface LinkType {
 
 const links: LinkType[] = [
   {
-    label: 'Confidence',
+    label: 'The Milky Way',
     shape: 'squircle',
-    imgSrc: 'https://placehold.co/401',
+    imgSrc: '/milky-way.jpg',
   },
   {
-    label: 'Fascination',
+    label: 'Beach',
     shape: 'square',
-    imgSrc: 'https://placehold.co/401',
+    imgSrc: '/beach.jpg',
   },
 
   {
-    label: 'Hitera',
+    label: 'Leaf',
     shape: 'square',
-    imgSrc: 'https://placehold.co/401',
+    imgSrc: '/leaf.jpg',
   },
   {
-    label: 'Iris by MODELEC',
+    label: 'Forest',
     shape: 'circle',
-    imgSrc: 'https://placehold.co/401',
+    imgSrc: '/forest.jpg',
   },
   {
-    label: 'Karo',
+    label: 'Sakura',
     shape: 'square',
-    imgSrc: 'https://placehold.co/401',
+    imgSrc: '/sakura.jpg',
   },
   {
-    label: 'Désir',
+    label: 'Queen of the night',
     shape: 'squircle',
-    imgSrc: 'https://placehold.co/401',
+    imgSrc: '/queen-of-the-night.jpg',
   },
 ]
 
@@ -62,6 +62,8 @@ function Menu() {
   function setProductImage(i: number) {
     setActiveLink(i)
 
+    const yValue = 150
+
     const oldLink = activeLink !== null ? activeLink : -1
 
     gsap.to('#infinite-slider', {
@@ -70,17 +72,25 @@ function Menu() {
     if (activeLink !== null) {
       gsap.to(`img[data-index="${oldLink}"]`, {
         autoAlpha: 0,
-        y: i > oldLink ? -200 : 200,
-        scale: 0.4,
+        y: i > oldLink ? -yValue : yValue,
+        scale: 0.6,
+        ease: 'power2.out',
+        duration: 0.4,
       })
     }
     gsap.fromTo(
       `img[data-index="${i}"]`,
-      { autoAlpha: 0, y: i > oldLink ? 200 : -200, scale: 0.4 },
+      {
+        autoAlpha: 0,
+        y: i > oldLink ? yValue : -yValue,
+        scale: 0.6,
+      },
       {
         autoAlpha: 1,
         y: 0,
         scale: 1,
+        ease: 'power2.out',
+        duration: 0.4,
       }
     )
   }
@@ -94,12 +104,13 @@ function Menu() {
         gridTemplateColumns: '12',
         gap: 12,
         position: 'relative',
+        pb: '24',
+        pt: '16',
       })}
     >
       <div
         className={css({
           gridColumn: '3/span 4',
-          my: '16',
         })}
       >
         <ul
@@ -140,22 +151,37 @@ function Menu() {
         className={css({
           gridColumn: '8/span 3',
           position: 'relative',
+          '2xl': {
+            gridColumn: '8/span 2',
+          },
         })}
       >
         {links.map((link, index) => (
-          <img
-            key={index}
+          <div
             className={css({
               position: 'absolute',
-              top: '50%',
-              right: '50%',
-              transform: 'translate(50%, -50%)',
-              visibility: 'hidden',
-              boxShadow: '2xl',
+              top: 0,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              display: 'grid',
+              placeItems: 'center',
+              height: 'full',
+              aspectRatio: 'square',
             })}
-            data-index={index}
-            src={link.imgSrc}
-          />
+          >
+            <img
+              key={index}
+              className={css({
+                visibility: 'hidden',
+                boxShadow: '2xl',
+                objectFit: 'cover',
+                aspectRatio: 'square',
+                borderRadius: '3xl',
+              })}
+              data-index={index}
+              src={link.imgSrc}
+            />
+          </div>
         ))}
       </div>
     </div>
