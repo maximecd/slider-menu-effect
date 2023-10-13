@@ -47,8 +47,9 @@ export default function InfiniteSlider({ links }: InfiniteSliderType) {
         },
       })}
     >
-      {[...Array(2)].map(() => (
+      {[...Array(2)].map((_, index) => (
         <div
+          key={index}
           data-carousel
           className={css({
             display: 'grid',

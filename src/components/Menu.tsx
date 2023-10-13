@@ -158,6 +158,7 @@ function Menu() {
       >
         {links.map((link, index) => (
           <div
+            key={index}
             className={css({
               position: 'absolute',
               top: 0,
@@ -170,7 +171,6 @@ function Menu() {
             })}
           >
             <img
-              key={index}
               className={css({
                 visibility: 'hidden',
                 boxShadow: '2xl',

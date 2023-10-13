@@ -110,7 +110,13 @@ function Nav() {
             </li>
           </ul>
         </nav>
-        <div id='dropdown'>
+        <div
+          className={css({
+            color: 'black',
+            display: isDropdownOpen ? 'block' : 'none',
+          })}
+          id='dropdown'
+        >
           <Menu />
         </div>
       </header>
