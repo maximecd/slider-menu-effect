@@ -26,7 +26,13 @@ function Nav() {
       })
       tl.to(headerRef.current, {
         height: token('sizes.14'),
-      })
+      }).to(
+        '#infinite-slider',
+        {
+          opacity: 0,
+        },
+        '<'
+      )
     }, headerRef)
   }
 
@@ -51,11 +57,12 @@ function Nav() {
             },
             '<0.2'
           )
-          .from(
-            '[data-carousel]',
+          .fromTo(
+            '#infinite-slider',
             {
               opacity: 0,
             },
+            { opacity: 1 },
             '<'
           )
       }, headerRef)
