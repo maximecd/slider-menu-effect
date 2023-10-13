@@ -125,7 +125,7 @@ function Nav() {
               <svg
                 className={css({
                   transform: isDropdownOpen ? 'rotate(180deg)' : '',
-                  transition: 'all ease-in-out .2s',
+                  transition: 'transform .3s',
                 })}
                 fill='none'
                 viewBox='0 0 15 15'
